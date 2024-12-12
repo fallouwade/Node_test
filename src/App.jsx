@@ -87,52 +87,63 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Gestion des Notes</h1>
+    <div className='container-fluid flex flex-col '>
+      <h1 className='font-bold text-center my-5 text-2xl'>Todo list</h1>
 
      
       <form onSubmit={addNote}>
-        <div>
-          <label>Prénom :</label>
-          <input
-            type="text"
-            name="prenom"
-            value={donne.prenom}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Email :</label>
-          <input
-            type="email"
-            name="email"
-            value={donne.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Téléphone :</label>
-          <input
-            type="number"
-            name="telephone"
-            value={donne.telephone}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Ajouter</button>
+      <div className="flex flex-col  items-center items-baseline
+                         w-96 content-baseline gap-3 mx-auto content-stretch px-16">
+                            
+                            <div className="flex flex-col w-full gap-1">
+                                <label>Prénom</label>
+                                <input type="text" 
+                                    name="prenom"
+                                    value={donne.prenom || ""}
+                                    onChange={handleChange}
+                                  className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                                  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"/>
+                            </div>
+                            <div className="flex flex-col w-full gap-1">
+                                <label>Email</label>
+                                <input type="email"
+                                name="email"
+                                value={donne.email || ""}
+                                onChange={handleChange}
+                                 className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                                 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+                            </div>
+                           
+                            <div className="flex flex-col w-full gap-1">
+                                <label>Téléphone</label>
+                                <input type="number"
+                                name="telephone"
+                                value={donne.telephone || ""}
+                                onChange={handleChange}
+                                  className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                                  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+                            </div>
+                        </div>
+                        <div className="flex justify-center my-5">
+                            <button
+                            className="py-2 px-5 bg-sky-500 text-white font-semibold rounded shadow-md"  >
+                                {modifi ? "Modifier" : "envoyer"}
+                            </button>
+                        </div>
       </form>
 
      
-      <ul>
-        {notes.map(note => (
+     
+        {/* {notes.map(note => (
           <li key={note._id}>
             <Note note={note} />
             <button onClick={() => deleteNote(note._id)}>Supprimer</button>
             <button onClick={() => updater(note._id)}>Modifier</button>
 
           </li>
-        ))}
-      </ul>
+        ))} */}
+          <Note note={notes} update={updater} delete={deleteNote}  />
+    
     </div>
   );
 };
